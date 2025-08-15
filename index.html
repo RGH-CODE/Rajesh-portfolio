@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rajesh Ghimire - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+      * {
+        font-family: 'Inter', sans-serif;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .project-card {
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .skill-bar {
+        width: 0%;
+        transition: width 1.5s ease-in-out;
+      }
+
+      .skill-bar.animate {
+        width: var(--skill-width);
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #3b82f6;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+      <div class="max-w-6xl mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-bold text-blue-600">RG</div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#home"
+              class="nav-link active text-gray-700 hover:text-blue-600"
+              >Home</a
+            >
+            <a href="#about" class="nav-link text-gray-700 hover:text-blue-600"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="nav-link text-gray-700 hover:text-blue-600"
+              >Projects</a
+            >
+            <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600"
+              >Skills</a
+            >
+            <a
+              href="#contact"
+              class="nav-link text-gray-700 hover:text-blue-600"
+              >Contact</a
+            >
+          </div>
+          <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+          <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600"
+            >Home</a
+          >
+          <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600"
+            >About</a
+          >
+          <a
+            href="#projects"
+            class="block py-2 text-gray-700 hover:text-blue-600"
+            >Projects</a
+          >
+          <a href="#skills" class="block py-2 text-gray-700 hover:text-blue-600"
+            >Skills</a
+          >
+          <a
+            href="#contact"
+            class="block py-2 text-gray-700 hover:text-blue-600"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 pt-20"
+    >
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <div class="fade-in">
+          <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-6">
+            Hi, I'm <span class="text-blue-600">Rajesh Ghimire</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            A Web Developer, Content Creator, and IT Student passionate about
+            building engaging digital experiences.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onclick="scrollToSection('projects')"
+              class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              View My Work
+            </button>
+            <button
+              onclick="scrollToSection('contact')"
+              class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-medium"
+            >
+              Get In Touch
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            I'm a passionate developer.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <div
+              class="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center"
+            >
+              <div class="text-8xl">
+                <img
+                  src="/me.jpg"
+                  alt="intro"
+                  class="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="fade-in">
+            <h3 class="text-4xl font-semibold text-gray-800 mb-6">
+              My Journey
+            </h3>
+            <p class="text-2xl-gray-600 mb-6">
+              Started as a curious student who loved solving problems with code.
+              Today, I specialize in creating full-stack applications with
+              modern technologies, focusing on user experience and clean,
+              maintainable code.
+            </p>
+            <p class="text-gray-600 mb-6">
+              When I'm not coding, you'll find me exploring new technologies,
+              contributing to open source projects, or sharing knowledge with
+              the developer community.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-6">
+              <span
+                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                >Problem Solver</span
+              >
+              <span
+                class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                >Team Player</span
+              >
+              <span
+                class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
+                >Continuous Learner</span
+              >
+            </div>
+            <button
+              onclick="downloadResume()"
+              class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              Download Resume
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">
+            Featured Projects
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Here are some of my recent projects that showcase my skills and
+            passion for development.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="project-card fade-in bg-white rounded-xl shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center"
+            >
+              <div class="text-6xl">🚀</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Snake Water Game
+              </h3>
+              <p class="text-gray-600 mb-4">
+                A fun snake water game using python.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs"
+                  >PYTHON</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <button class="text-blue-600 hover:text-blue-800 font-medium">
+                  Live Demo
+                </button>
+                <button class="text-gray-600 hover:text-gray-800 font-medium">
+                  <a
+                    href="https://github.com/RGH-CODE/basic-projects-/blob/main/snakeWaterGAME.PY"
+                    >GitHub</a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card fade-in bg-white rounded-xl shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center"
+            >
+              <div class="text-6xl">📱</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Bank Management System
+              </h3>
+              <p class="text-gray-600 mb-4">
+                A simple bank management system with conditional statements and
+                loops.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs"
+                  >C LANGUAGE</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <button class="text-blue-600 hover:text-blue-800 font-medium">
+                  Live Demo
+                </button>
+                <button class="text-gray-600 hover:text-gray-800 font-medium">
+                  <a
+                    href="https://github.com/RGH-CODE/basic-projects-/blob/main/bankStructure.c"
+                    >GitHub</a
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card fade-in bg-white rounded-xl shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-gradient-to-br from-green-400 to-teal-600 flex items-center justify-center"
+            >
+              <div class="text-6xl">📊</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Inventory Mangement system
+              </h3>
+              <p class="text-gray-600 mb-4">
+                A simple inventory management system with I/O operations and
+                binary file system
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs"
+                  >C++ LANGUAGE</span
+                >
+                <span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs"
+                  >Binary file</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs"
+                  >All features</span
+                >
+              </div>
+              <div class="flex gap-3">
+                <button class="text-blue-600 hover:text-blue-800 font-medium">
+                  Live Demo
+                </button>
+                <button class="text-gray-600 hover:text-gray-800 font-medium">
+                  GitHub
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">
+            Skills & Technologies
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Technologies and tools I work with to bring ideas to life.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Frontend</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">React / Next.js</span>
+                  <span class="text-gray-500">50%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-blue-600 h-2 rounded-full"
+                    style="--skill-width: 50%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">JavaScript / TypeScript</span>
+                  <span class="text-gray-500">30%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-yellow-500 h-2 rounded-full"
+                    style="--skill-width: 30%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">CSS / Tailwind</span>
+                  <span class="text-gray-500">40%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-green-500 h-2 rounded-full"
+                    style="--skill-width: 40%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Backend</h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">Node.js / Express</span>
+                  <span class="text-gray-500">10%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-purple-600 h-2 rounded-full"
+                    style="--skill-width: 10%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">Python / Django</span>
+                  <span class="text-gray-500">40%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-red-500 h-2 rounded-full"
+                    style="--skill-width: 0%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-700">Database (SQL/NoSQL)</span>
+                  <span class="text-gray-500">0%</span>
+                </div>
+                <div class="bg-gray-200 rounded-full h-2">
+                  <div
+                    class="skill-bar bg-indigo-600 h-2 rounded-full"
+                    style="--skill-width: 0%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="fade-in text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">
+            Let's Work Together
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Have a project in mind? I'd love to hear about it and discuss how we
+            can bring your ideas to life.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+              Get In Touch
+            </h3>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-xl">📧</span>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-800">
+                    <a href="rajesh.ghimire200@gmail.com">Email</a>
+                  </p>
+                  <p class="text-gray-600">rajesh.ghimire200@gmail.com</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-xl">📱</span>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-800">whatsapp</p>
+                  <p class="text-gray-600">connect</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-xl">📍</span>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-800">Location</p>
+                  <p class="text-gray-600">Nepal</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8">
+              <p class="text-gray-600 mb-4">Follow me on social media:</p>
+              <div class="flex space-x-4">
+                <button
+                  class="w-10 h-10 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <span class="text-sm"
+                    ><a href="https://github.com/RGH-CODE">Git-HUB</a></span
+                  >
+                </button>
+                <button
+                  class="w-10 h-10 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors"
+                >
+                  <span class="text-sm"
+                    ><a href="https://www.instagram.com/rajeshghimire08/"
+                      >Instagram</a
+                    ></span
+                  >
+                </button>
+                <button
+                  class="w-10 h-10 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition-colors"
+                >
+                  <span class="text-sm">Twiter</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="fade-in">
+            <form action="https://formspree.io/f/myzpvjvb" method="POST">
+              <div>
+                <label class="block text-gray-700 font-medium mb-2">Name</label>
+                <input
+                  name="name"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2"
+                  >Email</label
+                >
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label class="block text-gray-700 font-medium mb-2"
+                  >Message</label
+                >
+                <textarea
+                  name="message"
+                  type="text"
+                  rows="5"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p>&copy; 2024 Rajesh Ghimire. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation
+      function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: 'smooth',
+        });
+      }
+
+      // Mobile menu toggle
+      document
+        .getElementById('mobile-menu-btn')
+        .addEventListener('click', function () {
+          const mobileMenu = document.getElementById('mobile-menu');
+          mobileMenu.classList.toggle('hidden');
+        });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // Animate skill bars when skills section is visible
+            if (entry.target.id === 'skills') {
+              setTimeout(() => {
+                const skillBars = document.querySelectorAll('.skill-bar');
+                skillBars.forEach((bar) => {
+                  bar.classList.add('animate');
+                });
+              }, 300);
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Observe skills section specifically
+      observer.observe(document.getElementById('skills'));
+
+      // Active navigation link highlighting
+      window.addEventListener('scroll', function () {
+        const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        let current = '';
+        sections.forEach((section) => {
+          const element = document.getElementById(section);
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            current = section;
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Navigation link click handlers
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          scrollToSection(targetId);
+
+          // Close mobile menu if open
+          document.getElementById('mobile-menu').classList.add('hidden');
+        });
+      });
+
+      // Resume download handler
+      function downloadResume() {
+        // Create a sample resume content
+        const resumeContent = `
+RAJESH GHIMIRE
+Full-Stack Developer & UI/UX Designer
+Email: rajesh.ghimire@email.com | Phone: +1 (555) 123-4567
+Location: San Francisco, CA
+
+EXPERIENCE
+Senior Full-Stack Developer | TechCorp Inc. | 2021 - Present
+• Led development of e-commerce platform serving 100K+ users
+• Implemented responsive designs increasing mobile engagement by 40%
+• Mentored junior developers and established coding best practices
+
+Full-Stack Developer | StartupXYZ | 2019 - 2021
+• Built scalable web applications using React, Node.js, and MongoDB
+• Collaborated with design team to create intuitive user interfaces
+• Optimized application performance reducing load times by 60%
+
+EDUCATION
+Bachelor of Science in Computer Science | University of California | 2019
+
+SKILLS
+Frontend: React, Vue.js, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS
+Backend: Node.js, Python, Django, Express.js, RESTful APIs
+Database: MongoDB, PostgreSQL, MySQL, Redis
+Tools: Git, Docker, AWS, Firebase, Figma
+
+PROJECTS
+E-Commerce Platform - Full-stack solution with payment integration
+Task Management App - Real-time collaborative tool with 1000+ users
+Analytics Dashboard - Interactive data visualization with D3.js
+            `;
+
+        // Create and download the file
+        const blob = new Blob([resumeContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Rajesh_Ghimire_Resume.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        // Show feedback
+        const button = event.target.closest('button');
+        const originalText = button.innerHTML;
+        button.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Downloaded!
+            `;
+        button.classList.add('bg-green-600');
+        button.classList.remove('bg-blue-600');
+
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.classList.remove('bg-green-600');
+          button.classList.add('bg-blue-600');
+        }, 2000);
+      }
+
+      // Form submission handler
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        // Show success message
+        const form = event.target;
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+
+        button.textContent = 'Message Sent! ✓';
+        button.classList.add('bg-green-600');
+        button.classList.remove('bg-blue-600');
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('bg-green-600');
+          button.classList.add('bg-blue-600');
+          form.reset();
+        }, 3000);
+      }
+
+      // Project card hover effects
+      document.querySelectorAll('.project-card').forEach((card) => {
+        card.addEventListener('mouseenter', function () {
+          this.style.boxShadow =
+            '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+          this.style.boxShadow =
+            '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+        });
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement('script');
+            d.innerHTML =
+              "window.__CF$cv$params={r:'96f1b7f014849885',t:'MTc1NTE4Nzc4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName('head')[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement('iframe');
+          a.height = 1;
+          a.width = 1;
+          a.style.position = 'absolute';
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = 'none';
+          a.style.visibility = 'hidden';
+          document.body.appendChild(a);
+          if ('loading' !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener('DOMContentLoaded', c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              'loading' !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
