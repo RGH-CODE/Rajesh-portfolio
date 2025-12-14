@@ -570,7 +570,7 @@
                   name="phone number"
                   type="tel"
                   id='phone'
-                  required
+                  
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
                 />
               
@@ -594,7 +594,7 @@
                   name="message"
                   type="text"
                   rows="5"
-                  
+                  required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors resize-none"
                 ></textarea>
               </div>
@@ -767,7 +767,18 @@ Analytics Dashboard - Interactive data visualization with D3.js
       // Form submission handler
       function handleSubmit(event) {
         event.preventDefault();
+        //email validation check
+        const email = document.getElementById('email').value;
 
+    const response = await fetch(`https://apilayer.net/api/check?access_key=cea256f5d133770d15522666642ac07c&email=${email}`);
+    const data = await response.json();
+
+    if (data.format_valid && data.smtp_check) {
+        // Email is real → submit form to Formspree
+        this.submit();
+    } else {
+        alert("Please enter a valid email!");
+    }
         // Show success message
         const form = event.target;
         const button = form.querySelector('button[type="submit"]');
