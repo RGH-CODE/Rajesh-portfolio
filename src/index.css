@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-syne: "Syne", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+}
+
+@layer base {
+  :root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --bg: #ffffff;
+    --fg: #000000;
+    --card-bg: rgba(240, 240, 240, 0.8);
+    --border: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --accent: #3b82f6;
+    --mono: 'JetBrains Mono', monospace;
+    --sketch-border: 4px 10px 10px 10px / 10px 4px 10px 10px;
+  }
+
+  .dark {
+    --bg: #050505;
+    --fg: #ffffff;
+    --card-bg: rgba(20, 20, 20, 0.6);
+    --border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(0, 0, 0, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.05);
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-inter);
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .syne {
+    font-family: var(--font-syne);
+    line-height: 1.1;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border-bottom: 1.5px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .premium-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px var(--primary);
+  }
+
+  .btn-outline {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    filter: blur(10px);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Custom Utilities from Legacy */
+.scanline {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, var(--border) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0.15;
+}
+
+.noise {
+  position: fixed;
+  inset: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 9998;
+  animation: noise-shift 0.1s steps(2) infinite;
+}
+
+@keyframes noise-shift {
+  0% { transform: translate(0,0) }
+  10% { transform: translate(-5%,-5%) }
+  20% { transform: translate(-10%,5%) }
+  30% { transform: translate(5%,-10%) }
+  40% { transform: translate(-5%,15%) }
+  50% { transform: translate(-10%,5%) }
+  60% { transform: translate(15%,0) }
+  70% { transform: translate(0,10%) }
+  80% { transform: translate(-15%,0) }
+  90% { transform: translate(10%,5%) }
+  100% { transform: translate(5%,0) }
+}
+
+.realistic-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--bg) 0%, rgba(0,0,0,0.1) 150%);
+  z-index: -1;
+}
+
+#custom-cursor {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
+
+.sticker {
+  position: absolute;
+  width: 120px;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  padding: 10px;
+  font-family: var(--mono);
+  font-size: 9px;
+  transform: rotate(-3deg);
+  cursor: grab;
+  z-index: 50;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+.sticker:nth-child(even) {
+  transform: rotate(2deg);
+  background: #f0f5ff;
+  border-color: #adc6ff;
+}
+
+.typed-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background: var(--primary);
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Loader Styles */
+.loader-text {
+  font-family: var(--font-syne);
+  font-size: clamp(2rem, 10vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #fff;
+  position: relative;
+  animation: glitch 1.5s infinite;
+  text-transform: uppercase;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #f0f, -2px 0 #0ff; transform: translate(0); }
+  2% { text-shadow: 10px 0 #f0f, -10px 0 #0ff; transform: translate(-2px); }
+  4% { text-shadow: none; transform: translate(0); }
+}
+
+.scanning-bar {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(59, 130, 246, 0.4);
+  top: 0;
+  animation: scan 2.5s linear infinite;
+  z-index: 10002;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes scan {
+  to { transform: translateY(100vh); }
+}
+
+
+@keyframes scroll-text {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-text {
+  display: inline-block;
+  animation: scroll-text 30s linear infinite;
+  white-space: nowrap;
+}
