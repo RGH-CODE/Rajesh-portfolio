@@ -384,6 +384,9 @@
       right: 1rem;
       border-radius: 20px;
       padding: 2rem;
+      background: rgba(10, 10, 10, 0.95);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
       transform: translateY(-20px);
       opacity: 0;
       pointer-events: none;
@@ -394,7 +397,7 @@
     #mobile-menu.active {
       transform: translateY(0);
       opacity: 1;
-      pointer-events: all;
+      pointer-events: auto;
     }
 
     /* Custom Cursor */
@@ -542,7 +545,6 @@
         </button>
       </div>
     </nav>
-
     <main>
       <section id="home" class="hero">
         <div class="hero-bg-gradient"></div>
@@ -956,10 +958,14 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // 4. Mobile Menu
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('active');
+        });
+      }
     });
 
     // 5. Theme Toggle Logic
