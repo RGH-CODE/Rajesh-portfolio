@@ -91,8 +91,8 @@ const Gallery = () => {
             ))}
 
             {/* Admin Add Link */}
-            <Link 
-              to="/admin"
+            <Link
+              to="/contact"
               className="relative aspect-square overflow-hidden rounded-3xl border-2 border-dashed border-zinc-800 flex flex-col items-center justify-center text-zinc-600 hover:border-blue-600 hover:text-blue-600 transition-all group glass"
             >
               <FiPlus size={48} className="group-hover:scale-110 transition-transform" />
