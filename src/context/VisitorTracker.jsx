@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { db } from "../firebase/config.js";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,serverTimestamp } from "firebase/firestore";
 
 export default function VisitorTracker() {
 
@@ -19,8 +19,8 @@ export default function VisitorTracker() {
           city: data.city || "unknown",
           country: data.country_name || "unknown",
           device: navigator.userAgent,
-          browser:data.browser,
-          time: new Date()
+          browser:navigator.userAgent,
+          timestamp: serverTimestamp()
         });
 
         sessionStorage.setItem("tracked", "true");

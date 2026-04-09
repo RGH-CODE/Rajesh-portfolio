@@ -213,7 +213,7 @@ const Admin = () => {
   const [visitors, setVisitors] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "visitors"), orderBy("time", "desc"));
+    const q = query(collection(db, "visitors"), orderBy("timestamp", "desc"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => ({
@@ -471,7 +471,11 @@ const Admin = () => {
               <td className="border p-2">{v.country}</td>
                <td className="border p-2">{v.device}</td>
               <td className="border p-2">{v.browser}</td>
-              <td>{v.time?.toDate().toLocaleString()}</td>
+             <td className="border p-2">
+  {v.timestamp && v.timestamp.seconds
+    ? new Date(v.timestamp.seconds * 1000).toLocaleString()
+    : "Loading..."}
+</td>
             </tr>
           ))}
         </tbody>

@@ -17,7 +17,7 @@ import Stickers from './components/Stickers';
 import ThemeToggle from './components/ThemeToggle';
 import ScrollToHash from './components/ScrollToHash';
 import { Navigate } from 'react-router-dom';
-import VisitorTracker  from './context/VisitorTracker.js';
+import VisitorTracker  from './context/VisitorTracker.jsx';
 import PrivacyPolicy from './context/PrivacyPolicy.jsx'
 
 const AppContent = () => {
