@@ -41,6 +41,7 @@ const AppContent = () => {
 
   return (
     <>
+    <VisitorTracker />
       <Loader onFinished={() => setLoading(false)} />
       <div className={`min-h-screen transition-opacity duration-1000 ${loading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <CustomCursor />
@@ -76,8 +77,8 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <>
-    <VisitorTracker />
+  
+    
     <AuthProvider>
       <TerminalProvider>
         <Router>
@@ -86,7 +87,7 @@ const App = () => {
         </Router>
       </TerminalProvider>
     </AuthProvider>
-    </>
+  
   );
 };
 
