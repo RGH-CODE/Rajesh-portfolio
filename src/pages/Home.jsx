@@ -1,8 +1,8 @@
-import React from 'react';
 import Hero from '../components/HomeSections/Hero';
 import About from '../components/HomeSections/About';
 import Projects from '../components/HomeSections/Projects';
 import Skills from '../components/HomeSections/Skills';
+
 import Contact from '../components/HomeSections/Contact';
 
 const Home = () => {
@@ -12,6 +12,7 @@ const Home = () => {
       <About />
       <Projects />
       <Skills />
+
       <Contact />
     </div>
   );

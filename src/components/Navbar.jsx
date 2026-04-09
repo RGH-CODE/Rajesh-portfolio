@@ -19,6 +19,7 @@ const Navbar = ({ toggleDevMode }) => {
     { name: 'Home', path: '/home' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
+    { name: 'Blog', path: '/blogs' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Contact', path: '/contact', highlight: true },
   ];

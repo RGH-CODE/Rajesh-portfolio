@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import BlogPage from './pages/BlogPage';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -28,10 +29,10 @@ const AppContent = () => {
         closeTerminal();
       }
     };
-    
+
     // Initial check
     handleResize();
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [closeTerminal]);
@@ -49,12 +50,14 @@ const AppContent = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/blogs" element={<BlogPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
             <Route path="/home" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<Navigate to="/#about" replace />} />
             <Route path="/projects" element={<Navigate to="/#projects" replace />} />
             <Route path="/skills" element={<Navigate to="/#skills" replace />} />
+
             <Route path="/contact" element={<Navigate to="/#contact" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
@@ -64,7 +67,7 @@ const AppContent = () => {
         <div className="realistic-bg"></div>
         <div className="scanline"></div>
         <div className="noise"></div>
-    </div>
+      </div>
     </>
   );
 };
