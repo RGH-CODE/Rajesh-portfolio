@@ -210,6 +210,23 @@ const Admin = () => {
     setBlogPreview(null);
   };
 
+  const [visitors, setVisitors] = useState([]);
+
+  useEffect(() => {
+    const q = query(collection(db, "visitors"), orderBy("time", "desc"));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setVisitors(data);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+
   return (
     <div className="min-h-screen pt-32 pb-20 px-6 bg-black">
       <div className="container max-w-6xl mx-auto">
@@ -432,7 +449,39 @@ const Admin = () => {
           )}
         </AnimatePresence>
       </div>
+
+ <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Visitor Dashboard</h1>
+      <table className="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th className="border p-2">IP Address</th>
+            <th className="border p-2">City</th>
+            <th className="border p-2">Country</th>
+            <th className="border p-2">Device</th>
+            <th className="border p-2">Browser</th>
+            <th className="border p-2">Visited At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {visitors.map(v => (
+            <tr key={v.id}>
+               <td className="border p-2">{v.ip}</td>
+              <td className="border p-2">{v.city}</td>
+              <td className="border p-2">{v.country}</td>
+               <td className="border p-2">{v.device}</td>
+              <td className="border p-2">{v.browser}</td>
+              <td>{v.time?.toDate().toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+
+    </div>
+
+
+
   );
 };
 

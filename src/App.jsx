@@ -17,6 +17,8 @@ import Stickers from './components/Stickers';
 import ThemeToggle from './components/ThemeToggle';
 import ScrollToHash from './components/ScrollToHash';
 import { Navigate } from 'react-router-dom';
+import VisitorTracker  from './context/VisitorTracker.js';
+import PrivacyPolicy from './context/PrivacyPolicy.jsx'
 
 const AppContent = () => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const AppContent = () => {
             <Route path="/about" element={<Navigate to="/#about" replace />} />
             <Route path="/projects" element={<Navigate to="/#projects" replace />} />
             <Route path="/skills" element={<Navigate to="/#skills" replace />} />
-
+           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact" element={<Navigate to="/#contact" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
@@ -74,13 +76,17 @@ const AppContent = () => {
 
 const App = () => {
   return (
+    <>
+    <VisitorTracker />
     <AuthProvider>
       <TerminalProvider>
         <Router>
+            
           <AppContent />
         </Router>
       </TerminalProvider>
     </AuthProvider>
+    </>
   );
 };
 
