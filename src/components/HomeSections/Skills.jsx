@@ -15,7 +15,7 @@ const SkillCategory = ({ title, skills }) => (
         <div key={index}>
           <div className="flex justify-between mb-1 text-sm font-medium">
             <span>{skill.name}</span>
-            <span>{skill.level}%</span>
+            <span>{skill.level}</span>
           </div>
           <div className="h-1.5 bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden">
             <motion.div 
@@ -37,22 +37,22 @@ const Skills = () => {
     {
       title: "Frontend",
       skills: [
-        { name: "React / Next.js", level: 50 },
-        { name: "Tailwind CSS", level: 40 }
+        { name: "React/tanstack" },
+        { name: "Tailwind CSS" }
       ]
     },
     {
       title: "Backend",
       skills: [
-        { name: "Python / Django", level: 40 },
-        { name: "Node.js", level: 10 }
+        { name: "Python / Django" },
+        { name: "Node.js" }
       ]
     },
     {
       title: "Other",
       skills: [
-        { name: "Git / GitHub", level: 80 },
-        { name: "Content Creation", level: 60 }
+        { name: "Git / GitHub" },
+        { name: "Content Creation" }
       ]
     }
   ];

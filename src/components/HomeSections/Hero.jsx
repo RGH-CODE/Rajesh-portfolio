@@ -7,7 +7,7 @@ const Hero = () => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-
+  const [hovered, setHovered] = useState(false);
   // typing effect
   useEffect(() => {
     if (subIndex === words[index].length + 1 && !reverse) {
@@ -53,6 +53,20 @@ const Hero = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
+         <span className="text-orange-300 font-bold tracking-widest uppercase text-sm mb-4 block">
+      <a
+        href="https://nepecom.nepecom.workers.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-red-900 transition"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {hovered
+          ? "Click Me"
+          : "Explore Nepal's First Modern E-commerce System"}
+      </a>
+    </span>
           <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">Available for Projects</span>
           <h1 className="syne text-[clamp(3.5rem,8vw,6rem)] mb-6 leading-[0.85] bg-[linear-gradient(180deg,#fff_0%,#444_100%)] bg-clip-text text-transparent">
             Crafting Digital<br />Experiences.

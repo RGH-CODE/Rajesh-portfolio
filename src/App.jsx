@@ -14,7 +14,6 @@ import Loader from './components/Loader';
 import Terminal from './components/Terminal';
 import CustomCursor from './components/CustomCursor';
 import Stickers from './components/Stickers';
-import ThemeToggle from './components/ThemeToggle';
 import ScrollToHash from './components/ScrollToHash';
 import { Navigate } from 'react-router-dom';
 import VisitorTracker  from './context/VisitorTracker.jsx';
@@ -45,9 +44,8 @@ const AppContent = () => {
       <Loader onFinished={() => setLoading(false)} />
       <div className={`min-h-screen transition-opacity duration-1000 ${loading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <CustomCursor />
-        <Navbar toggleDevMode={toggleTerminal} />
-        <Stickers isVisible={true} />
-        <ThemeToggle />
+        <Navbar/>
+
         <ScrollToHash loading={loading} />
         <main>
           <Routes>
